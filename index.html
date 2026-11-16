@@ -284,25 +284,21 @@
             &copy; 2026 青楓館高等学院 All Rights Reserved.
         </div>
     </section>
-<!-- Supabase連携コード ここから -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  // ⬇️ ここをご自身のURLとキーに書き換えてください！
-  const supabaseUrl = '【https://lnjlfppawfkwwtlbdapa.supabase.co/rest/v1/】';
-  const supabaseKey = '【sb_publishable_hEuKKmmGbgI49eSpvQUygw_TcmDHoi9】';
+  const supabaseUrl = '【sb_publishable_hEuKKmmGbgI49eSpvQUygw_TcmDHoi9】';
+  const supabaseKey = '【https://lnjlfppawfkwwtlbdapa.supabase.co/rest/v1/】';
   const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
   async function getReviews() {
-    // データベースから口コミを取得
     const { data, error } = await supabase.from('reviews').select('*');
     if (error) {
       console.error('エラー:', error);
       return;
     }
 
-    // 可愛いデザインで画面に追加する準備
     let html = '<div class="max-w-4xl mx-auto p-6 mt-10 mb-20 bg-pink-50 rounded-3xl shadow-lg border-4 border-white">';
-    html += '<h2 class="text-2xl md:text-3xl font-bold text-center text-pink-500 mb-6 tracking-wide">✨ みんなの口コミ（リアルタイム） ✨</h2>';
+    html += '<h2 class="text-2xl md:text-3xl font-bold text-center text-pink-500 mb-6 tracking-wide">✨ Supabaseから届いた口コミ ✨</h2>';
     html += '<div class="grid gap-6 md:grid-cols-3">';
 
     data.forEach(review => {
@@ -314,15 +310,11 @@
         </div>
       `;
     });
-
     html += '</div></div>';
-
-    // ページの一番下（フッターの直前など）に追加する
     document.body.insertAdjacentHTML('beforeend', html);
   }
-
   getReviews();
 </script>
-<!-- Supabase連携コード ここまで -->
+ 
 </body>
 </html>
